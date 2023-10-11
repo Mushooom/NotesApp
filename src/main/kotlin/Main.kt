@@ -1,13 +1,12 @@
+import utils.ScannerInput
 import java.util.Scanner
-import java.lang.System.exit
-import java.util.*
 import kotlin.system.exitProcess
 
 // Alexander Novakovsky Notes APP
 
 
 //Global variables
-val scanner = Scanner(System.`in`)
+
 
 // Main function
 fun main(args: Array<String>) {
@@ -18,7 +17,7 @@ fun main(args: Array<String>) {
 // Main menu function -- (alt + 179, 180, 196 ...) -- return Int value entered
 // Web source for alt codes https://www.alt-codes.net/
 fun mainMenu(): Int {
-    println("""
+    return ScannerInput.ScannerInput.readNextInt("""
         ┌──────────────────────────┐
         │     NOTE KEEPER APP      │
         ├──────────────────────────┤
@@ -32,7 +31,6 @@ fun mainMenu(): Int {
         └──────────────────────────┘
            Enter option:    
     """.trimIndent())
-    return scanner.nextInt()
 }
 
 
