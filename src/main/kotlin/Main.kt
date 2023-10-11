@@ -1,15 +1,16 @@
+import mu.KotlinLogging
 import utils.ScannerInput
-import java.util.Scanner
 import kotlin.system.exitProcess
 
 // Alexander Novakovsky Notes APP
 
 
-//Global variables
-
+// Logger variable
+var logger = KotlinLogging.logger{}
 
 // Main function
 fun main(args: Array<String>) {
+    logger.info { "NOTE APP starting" }
     runMenu()
 }
 
@@ -51,30 +52,31 @@ fun runMenu() {
 
 // Function addNote -- adding a note
 fun addNote(){
-    println("Adding a note")
+    logger.info { "Add note function activated" }
 }
 
 
 // Function listNotes -- listing all the notes
 fun listNotes(){
-    println("Listing all the notes")
+    logger.info { "List notes function activated" }
 }
 
 
 // Function updateNote -- updating a note by selected ID
 fun updateNote(){
-    println("Updating a note")
+    logger.info { "Update note function activated" }
 }
 
 
 // Function deleteNote -- note delete by entering ID
 fun deleteNote(){
-    println("Note has been deleted")
+    logger.info { "Delete function activated" }
 }
 
 
 // Function exit -- application exit on selecting 0 from menu
 fun exitApp(){
     println("App exiting")
+    logger.info { "App terminated" }
     exitProcess(0)
 }
