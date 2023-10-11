@@ -15,20 +15,23 @@ fun main(args: Array<String>) {
 }
 
 
-// Main menu function -- (alt + 0151) -- return Int value entered
+// Main menu function -- (alt + 179, 180, 196 ...) -- return Int value entered
+// Web source for alt codes https://www.alt-codes.net/
 fun mainMenu(): Int {
-    println("Note Keeper App")
-    println("———————————————")
-    println("NOTE MENU:")
-    println("———————————————")
-    println(" 1 -> Add a note")
-    println(" 2 -> List all notes")
-    println(" 3 -> Update a note")
-    println(" 4 -> Delete a note")
-    println("———————————————")
-    println(" 0 -> Exit app")
-    println("———————————————")
-    println("Enter option: ")
+    println("""
+        ┌──────────────────────────┐
+        │     NOTE KEEPER APP      │
+        ├──────────────────────────┤
+        │  NOTE MENU:              │
+        │  1 -> Add a note         │
+        │  2 -> List all notes     │
+        │  3 -> Update a note      │
+        │  4 -> Delete a note      │
+        ├──────────────────────────┤
+        │  0 -> Exit app           │
+        └──────────────────────────┘
+           Enter option:    
+    """.trimIndent())
     return scanner.nextInt()
 }
 
