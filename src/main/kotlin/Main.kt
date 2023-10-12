@@ -1,5 +1,7 @@
 import mu.KotlinLogging
 import utils.ScannerInput
+import utils.ScannerInput.ScannerInput.readNextInt
+import utils.ScannerInput.ScannerInput.readNextLine
 import kotlin.system.exitProcess
 
 // Alexander Novakovsky Notes APP
@@ -7,6 +9,9 @@ import kotlin.system.exitProcess
 
 // Logger variable
 var logger = KotlinLogging.logger{}
+
+// NoteAPI variable
+private val noteAPI = controllers.NoteAPI()
 
 // Main function
 fun main(args: Array<String>) {
@@ -50,15 +55,26 @@ fun runMenu() {
 }
 
 
-// Function addNote -- adding a note
+// Function addNote -- adding a note -> noteAPI array list -> models Note
 fun addNote(){
-    logger.info { "Add note function activated" }
+    //logger.info { "addNote function invoked" }
+    val noteTitle = readNextLine("Enter a tile of the note: ")
+    val notePriority = readNextInt("Enter a priority from 1 to 5: ")
+    val noteCategory = readNextLine("Enter a category for the note: ")
+    val isAdded = noteAPI.add(models.Note(noteTitle, notePriority, noteCategory, false))
+
+    if (isAdded) {
+        println("Added Successfully")
+    } else {
+        println("Add Failed")
+    }
 }
 
 
-// Function listNotes -- listing all the notes
+// Function listNotes -- listing all the notes called from noteAPI
 fun listNotes(){
-    logger.info { "List notes function activated" }
+    //logger.info { "List notes function activated" }
+    println(noteAPI.listAllNotes())
 }
 
 
