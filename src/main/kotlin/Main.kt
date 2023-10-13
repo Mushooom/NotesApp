@@ -5,7 +5,7 @@ import utils.ScannerInput.ScannerInput.readNextLine
 import kotlin.system.exitProcess
 
 // Alexander Novakovsky Notes APP
-
+// Testing new branch
 
 // Logger variable
 var logger = KotlinLogging.logger{}
