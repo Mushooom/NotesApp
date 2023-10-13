@@ -6,7 +6,6 @@ import kotlin.system.exitProcess
 
 // Alexander Novakovsky Notes APP
 
-
 // Logger variable
 var logger = KotlinLogging.logger{}
 

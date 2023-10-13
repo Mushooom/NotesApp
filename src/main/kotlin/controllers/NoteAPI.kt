@@ -23,4 +23,20 @@ class NoteAPI {
             listOfNotes
         }
     }
+
+    // Function to count notes in ArrayList
+    fun numberOfNotes(): Int {
+        return notes.size
+    }
+
+    // Function find a note by the index in ArrayList
+    fun findNote(index: Int): Note? {
+        return if (isValidListIndex(index, notes)) {
+            notes[index]
+        } else null
+    }
+        // Function to check if there are items in ArrayList
+        fun isValidListIndex(index: Int, list: List<Any>): Boolean {
+            return (index >= 0 && index < list.size)
+        }
 }
