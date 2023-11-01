@@ -1,8 +1,10 @@
+import models.Note
 import mu.KotlinLogging
 import utils.ScannerInput
 import utils.ScannerInput.ScannerInput.readNextInt
 import utils.ScannerInput.ScannerInput.readNextLine
 import kotlin.system.exitProcess
+
 
 // Alexander Novakovsky Notes APP
 
@@ -31,6 +33,11 @@ fun mainMenu(): Int {
         │  2 -> List all notes     │
         │  3 -> Update a note      │
         │  4 -> Delete a note      │
+        │  5 -> Active notes       │
+        │  6 -> Archived notes     │
+        │  15 -> Active notes      │
+        │  16 -> Archived notes    │        
+        │  99 -> Dummy data        │
         ├──────────────────────────┤
         │  0 -> Exit app           │
         └──────────────────────────┘
@@ -47,6 +54,11 @@ fun runMenu() {
             2 -> listNotes()
             3 -> updateNote()
             4 -> deleteNote()
+            5 -> listActiveNotes()
+            6 -> listArchivedNotes()
+            15 -> numberOfActiveNotes()
+            16 -> numberOfArchivedNotes()
+            99 -> dummyData()
             0 -> exitApp()
             else -> println("Invalid option entered: $option")
         }
@@ -76,6 +88,25 @@ fun listNotes(){
     println(noteAPI.listAllNotes())
 }
 
+// Function list all active notes
+fun listActiveNotes(){
+    println(noteAPI.listActiveNotes())
+}
+
+// Function list all archived notes
+fun listArchivedNotes(){
+    println(noteAPI.listArchivedNotes())
+}
+
+// Function to show count of active notes
+fun numberOfActiveNotes(){
+    println("Active notes: " + noteAPI.numberOfActiveNotes())
+}
+
+// Function to show count of active notes
+fun numberOfArchivedNotes(){
+    println("Archived notes: " + noteAPI.numberOfArchivedNotes())
+}
 
 // Function updateNote -- updating a note by selected ID
 fun updateNote(){
@@ -94,4 +125,13 @@ fun exitApp(){
     println("App exiting")
     logger.info { "App terminated" }
     exitProcess(0)
+}
+
+// Dummy data
+fun dummyData(){
+    noteAPI.add(Note("Title", 1, "College", false))
+    noteAPI.add(Note("Missing", 2, "Work", true))
+    noteAPI.add(Note("Heroes of Might and Magic", 3, "Games", false))
+    noteAPI.add(Note("Vikings", 5, "Netflix", false))
+    noteAPI.add(Note("Hobbies", 4, "Work", true))
 }

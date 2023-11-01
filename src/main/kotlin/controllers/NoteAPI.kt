@@ -3,7 +3,7 @@ import models.Note
 
 // Controller class NoteAPI
 class NoteAPI {
-    private var notes = ArrayList<Note>()
+    var notes = ArrayList<Note>()
 
     // Function to add a note -- boolean
     fun add(note: Note): Boolean {
@@ -39,4 +39,58 @@ class NoteAPI {
         fun isValidListIndex(index: Int, list: List<Any>): Boolean {
             return (index >= 0 && index < list.size)
         }
+
+
+    // Function to list active notes, return empty if no notes in array list
+    fun listActiveNotes(): String {
+        return if (numberOfActiveNotes() == 0) {
+            "No active notes"
+        } else {
+            var listOfActiveNotes = ""
+            for (note in notes) {
+                if (!note.isNoteArchived) {
+                    listOfActiveNotes += "${notes.indexOf(note)}: $note \n"
+                }
+            }
+            listOfActiveNotes
+        }
+    }
+
+    // Function to get number of active notes = not archived
+    fun numberOfActiveNotes(): Int {
+        var counter = 0
+        for (note in notes) {
+            if (!note.isNoteArchived) {
+                counter++
+            }
+        }
+        return counter
+    }
+
+    // Function to list archived notes = not active
+    fun listArchivedNotes(): String {
+        return if (numberOfArchivedNotes() == 0) {
+            "No archived notes"
+        } else {
+            var listOfAchivedNotes = ""
+            for (note in notes) {
+                if (note.isNoteArchived) {
+                    listOfAchivedNotes += "${notes.indexOf(note)}: $note \n"
+                }
+            }
+            listOfAchivedNotes
+        }
+    }
+
+    // Function to show number of archived notes
+    fun numberOfArchivedNotes(): Int {
+        var counter = 0
+        for (note in notes) {
+            if (note.isNoteArchived) {
+                counter++
+            }
+        }
+        return counter
+    }
+
 }
