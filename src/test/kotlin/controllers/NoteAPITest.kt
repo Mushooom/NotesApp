@@ -7,10 +7,14 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 
 /* Testing class for NoteAPI functions
 *   - add()
-*   - listAll()*/
+*   - listAll()
+*   - listActiveNotes()
+*   - listArchivedNotes()
+* */
 class NoteAPITest {
 
     private var learnKotlin: Note? = null
@@ -26,10 +30,10 @@ class NoteAPITest {
         learnKotlin = Note("Learning Kotlin", 5, "College", false)
         summerHoliday = Note("Summer Holiday to France", 1, "Holiday", false)
         codeApp = Note("Code App", 4, "Work", false)
-        testApp = Note("Test App", 4, "Work", false)
-        swim = Note("Swim - Pool", 3, "Hobby", false)
+        testApp = Note("Test App", 4, "Work", true)
+        swim = Note("Swim - Pool", 3, "Hobby", true)
 
-        // Adding the notes to api
+        // Adding the notes to API
         populateNotes!!.add(learnKotlin!!)
         populateNotes!!.add(summerHoliday!!)
         populateNotes!!.add(codeApp!!)
@@ -73,7 +77,7 @@ class NoteAPITest {
     @Nested
     inner class ListNotes {
 
-        // Test to list notes when ArrayListt is empty --> NoteAPI function listAllNotes
+        // Test to list notes when ArrayList is empty --> NoteAPI function listAllNotes
         @Test
         fun `list all notes for empty ArrayList`() {
             assertEquals(0, emptyNotes!!.numberOfNotes())
@@ -91,6 +95,48 @@ class NoteAPITest {
             assertTrue(noteString.contains("Test App"))
             assertTrue(noteString.contains("Swim"))
         }
+    }
+
+       // Test to list Active notes when ArrayList is empty --> NoteAPI function listActiveNotes
+       @Test
+       fun `listActiveNotes for empty ArrayList`(){
+           assertEquals(0, emptyNotes!!.numberOfNotes())
+           assertTrue(
+               emptyNotes!!.listActiveNotes().contains("No active notes")
+           )
+       }
+
+       // Test to listActiveNotes from populated ArrayList --> NoteAPI function listActiveNotes
+       @Test
+       fun `listActiveNotes from populated ArrayList`(){
+           assertEquals(3, populateNotes!!.numberOfActiveNotes())
+           val activeNotesString = populateNotes!!.listActiveNotes()
+           assertTrue(activeNotesString.contains("Learning Kotlin"))
+           assertTrue(activeNotesString.contains("Code App"))
+           assertTrue(activeNotesString.contains("Summer Holiday"))
+           assertFalse(activeNotesString.contains("Test App"))
+           assertFalse(activeNotesString.contains("Swim"))
+       }
+
+       // Test to listArchivedNotes from empty ArrayList --> NoteAPI function listArchivedNotes
+       @Test
+       fun `listArchivedNotes from empty ArrayList`(){
+           assertEquals(0, emptyNotes!!.numberOfNotes())
+           assertTrue(
+               emptyNotes!!.listArchivedNotes().contains("No archived notes")
+           )
+       }
+
+       // Test to listArchivedNotes from populated ArrayList --> NoteAPI function listArchivedNotes
+       @Test
+       fun `listArchivedNotes from populated ArrayList`(){
+           assertEquals(2, populateNotes!!.numberOfArchivedNotes())
+           val archivedNotesString = populateNotes!!.listArchivedNotes()
+           assertFalse(archivedNotesString.contains("Learning Kotlin"))
+           assertFalse(archivedNotesString.contains("Code App"))
+           assertFalse(archivedNotesString.contains("Summer Holiday"))
+           assertTrue(archivedNotesString.contains("Test App"))
+           assertTrue(archivedNotesString.contains("Swim"))
     }
 
 }
