@@ -124,6 +124,10 @@ fun deleteNote(){
 }
 
 
+// Function listNotesByPriority -> noteAPI listNotesBySelectedPriority
+
+
+
 // Function exit -- application exit on selecting 0 from menu
 fun exitApp(){
     println("App exiting")

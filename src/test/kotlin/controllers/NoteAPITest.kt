@@ -14,6 +14,7 @@ import kotlin.test.assertFalse
 *   - listAll()
 *   - listActiveNotes()
 *   - listArchivedNotes()
+*   - listNotesBySelectedPriority()
 * */
 class NoteAPITest {
 
@@ -158,31 +159,32 @@ class NoteAPITest {
             assertTrue(priorityToString.contains("2"))
         }
 
-/*
+        // Test list notes by priority to show all matching notes --> from noteAPI function listNotesBySelectedPriority
         @Test
-        fun `listNotesBySelectedPriority returns all notes that match that priority when notes of that priority exist`() {
+        fun `listNotesBySelectedPriority shows notes with matching priority`() {
             //Priority 1 (1 note), 2 (none), 3 (1 note). 4 (2 notes), 5 (1 note)
-            assertEquals(5, populatedNotes!!.numberOfNotes())
-            val priority1String = populatedNotes!!.listNotesBySelectedPriority(1).lowercase()
-            assertTrue(priority1String.contains("1 note"))
+            assertEquals(5, populateNotes!!.numberOfNotes())
+            val priority1String = populateNotes!!.listNotesBySelectedPriority(1)
+            assertTrue(priority1String.contains("1 notes with priority"))
             assertTrue(priority1String.contains("priority 1"))
-            assertTrue(priority1String.contains("summer holiday"))
-            assertFalse(priority1String.contains("swim"))
-            assertFalse(priority1String.contains("learning kotlin"))
-            assertFalse(priority1String.contains("code app"))
-            assertFalse(priority1String.contains("test app"))
+            assertTrue(priority1String.contains("Summer Holiday"))
+            assertFalse(priority1String.contains("Swim"))
+            assertFalse(priority1String.contains("Learning Kotlin"))
+            assertFalse(priority1String.contains("Code App"))
+            assertFalse(priority1String.contains("Test App"))
 
 
-            val priority4String = populatedNotes!!.listNotesBySelectedPriority(4).lowercase(Locale.getDefault())
-            assertTrue(priority4String.contains("2 note"))
+            val priority4String = populateNotes!!.listNotesBySelectedPriority(4)
+            assertTrue(priority4String.contains("2 notes with priority"))
             assertTrue(priority4String.contains("priority 4"))
-            assertFalse(priority4String.contains("swim"))
-            assertTrue(priority4String.contains("code app"))
-            assertTrue(priority4String.contains("test app"))
-            assertFalse(priority4String.contains("learning kotlin"))
-            assertFalse(priority4String.contains("summer holiday"))
+            assertFalse(priority4String.contains("Swim"))
+            assertTrue(priority4String.contains("Code App"))
+            assertTrue(priority4String.contains("Test App"))
+            assertFalse(priority4String.contains("Learning Kotlin"))
+            assertFalse(priority4String.contains("Summer Holiday"))
+
         }
 
- */
+
     }
 }
