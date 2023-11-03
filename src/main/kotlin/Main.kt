@@ -35,8 +35,12 @@ fun mainMenu(): Int {
         │  4 -> Delete a note      │
         │  5 -> Active notes       │
         │  6 -> Archived notes     │
-        │  15 -> Active notes      │
-        │  16 -> Archived notes    │        
+        │  7 -> By priority notes  │
+        │  8 -> Number by priority │
+        │  9 -> --                 │
+        │  10  > --------------    │
+        │  15 -> Active number     │
+        │  16 -> Archived number   │        
         │  99 -> Dummy data        │
         ├──────────────────────────┤
         │  0 -> Exit app           │
