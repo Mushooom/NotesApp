@@ -1,10 +1,13 @@
+import controllers.NoteAPI
 import models.Note
 import mu.KotlinLogging
+import persistence.JSONSerializer
+import persistence.XMLSerializer
 import utils.ScannerInput
 import utils.ScannerInput.ScannerInput.readNextInt
 import utils.ScannerInput.ScannerInput.readNextLine
+import java.io.File
 import kotlin.system.exitProcess
-
 
 // Alexander Novakovsky Notes APP -- v2.0
 
@@ -12,7 +15,8 @@ import kotlin.system.exitProcess
 var logger = KotlinLogging.logger{}
 
 // NoteAPI variable
-private val noteAPI = controllers.NoteAPI()
+  // private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
+private val noteAPI = NoteAPI(JSONSerializer(File("notes.json")))
 
 // Main function
 fun main(args: Array<String>) {
@@ -27,21 +31,17 @@ fun mainMenu(): Int {
         ┌──────────────────────────┐
         │     NOTE KEEPER APP      │
         ├──────────────────────────┤
-        │  NOTE MENU:              │
-        │  1 -> Add a note         │
-        │  2 -> List all notes     │
-        │  3 -> Update a note      │
-        │  4 -> Delete a note      │
-        │  5 -> Active notes       │
-        │  6 -> Archived notes     │
-        │  7 -> By priority notes  │
-        │  8 -> Number by priority │
-        │  9 -> --                 │
-        │  10  > --------------    │
-        │  15 -> Active number     │
-        │  16 -> Archived number   │        
-        │  99 -> Dummy data        │
-        ├──────────────────────────┤
+        │  NOTE MENU:              │┌──────────────────────────┐
+        │  1 -> Add a note         ││  10  > --------------    │
+        │  2 -> List all notes     ││  15 -> Active number     │
+        │  3 -> Update a note      ││  16 -> Archived number   │
+        │  4 -> Delete a note      ││  20 -> Save notes        │
+        │  5 -> Active notes       ││  21 -> Load notes        │
+        │  6 -> Archived notes     ││  **  > --------------    │
+        │  7 -> By priority notes  ││  **  > --------------    │
+        │  8 -> Number by priority ││  **  > --------------    │
+        │  9 -> --                 ││  99  > Dummy data        │
+        ├──────────────────────────┤└──────────────────────────┘
         │  0 -> Exit app           │
         └──────────────────────────┘
            Enter option:    
@@ -60,6 +60,8 @@ fun runMenu() {
             6 -> listArchivedNotes()
             15 -> numberOfActiveNotes()
             16 -> numberOfArchivedNotes()
+            20 -> saveNotes()
+            21 -> loadNotes()
             99 -> dummyData()
             0 -> exitApp()
             else -> println("Invalid option entered: $option")
@@ -144,6 +146,24 @@ fun deleteNote(){
                 println("Delete fail")
             }
 
+    }
+}
+
+// Function save -> save notes to file notes.xml
+fun saveNotes(){
+    try {
+        noteAPI.store()
+    } catch (e: Exception){
+        System.err.println("Error saving to file: $e")
+    }
+}
+
+// Function load saved notes from file
+fun loadNotes(){
+    try {
+        noteAPI.load()
+    } catch (e: Exception){
+        System.err.println("Error loading form file: $e")
     }
 }
 

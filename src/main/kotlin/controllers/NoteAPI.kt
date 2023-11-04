@@ -1,9 +1,23 @@
 package controllers
 import models.Note
+import persistence.Serializer
+
 
 // Controller class NoteAPI
-class NoteAPI {
+class NoteAPI(serializerType:Serializer) {
     var notes = ArrayList<Note>()
+    private var serializer: Serializer = serializerType
+
+    @Throws(Exception::class)
+    fun load(){
+        notes = serializer.read() as ArrayList<Note>
+    }
+
+    @Throws(Exception::class)
+    fun store(){
+        serializer.write(notes)
+        print("Saving notes\n")
+    }
 
     // Function to add a note -- boolean
     fun add(note: Note): Boolean {
