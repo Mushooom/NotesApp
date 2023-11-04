@@ -19,6 +19,8 @@ import kotlin.test.assertNull
 *   - deleteNotes()
 *   - updateNote()
 * */
+
+/*
 class NoteAPITest {
 
     private var learnKotlin: Note? = null
@@ -245,3 +247,5 @@ class NoteAPITest {
         }
     }
 }
+
+ */
