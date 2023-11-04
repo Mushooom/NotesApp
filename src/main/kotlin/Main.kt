@@ -121,6 +121,19 @@ fun updateNote(){
 // Function deleteNote -- note delete by entering ID
 fun deleteNote(){
     logger.info { "Delete function activated" }
+    // List notes -> check if populated -> then prompt for index number to delete
+    listNotes()
+    if (noteAPI.numberOfNotes() > 0) {
+        val indexToDelete = readNextInt("Enter note index to delete: ")
+        // Pass the index number to function deleteNOte delete the note by specified index
+        val noteToDelete = noteAPI.deleteNote(indexToDelete)
+            if (noteToDelete != null) {
+                println("Delete success. Deleted note: ${noteToDelete.noteTitle}")
+            } else {
+                println("Delete fail")
+            }
+
+    }
 }
 
 

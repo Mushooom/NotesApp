@@ -125,4 +125,11 @@ class NoteAPI {
         return counter
     }
 
+    // Function delete note by selected index
+    fun deleteNote(indexToDelete: Int): Note? {
+        return if (isValidListIndex(indexToDelete, notes)) {
+            notes.removeAt(indexToDelete)
+        } else null
+    }
+
 }
