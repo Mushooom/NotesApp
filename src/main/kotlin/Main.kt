@@ -32,7 +32,7 @@ fun mainMenu(): Int {
         │     NOTE KEEPER APP      │
         ├──────────────────────────┤
         │  NOTE MENU:              │┌──────────────────────────┐
-        │  1 -> Add a note         ││  10  > --------------    │
+        │  1 -> Add a note         ││  10  > Archive note      │
         │  2 -> List all notes     ││  15 -> Active number     │
         │  3 -> Update a note      ││  16 -> Archived number   │
         │  4 -> Delete a note      ││  20 -> Save notes        │
@@ -138,7 +138,7 @@ fun deleteNote(){
     listNotes()
     if (noteAPI.numberOfNotes() > 0) {
         val indexToDelete = readNextInt("Enter note index to delete: ")
-        // Pass the index number to function deleteNOte delete the note by specified index
+        // Pass the index number to function deleteNote delete the note by specified index
         val noteToDelete = noteAPI.deleteNote(indexToDelete)
             if (noteToDelete != null) {
                 println("Delete success. Deleted note: ${noteToDelete.noteTitle}")
@@ -148,6 +148,24 @@ fun deleteNote(){
 
     }
 }
+
+/*
+// Function to archive a note
+fun archiveNote(){
+    // Check if there are active notes in ArrayList
+    listActiveNotes()
+    if (noteAPI.numberOfActiveNotes() > 0){
+        val indexToArchive = readNextInt("Enter index of the note to be archived: ")
+        // Pass the index of the note to be archived
+        val noteToArchive = noteAPI.archiveNote(indexToArchive)
+        if (noteToArchive != null) {
+            println("Note archived: ")
+        } else {
+            println("Failed to archive note")
+        }
+    }
+}
+ */
 
 // Function save -> save notes to file notes.xml
 fun saveNotes(){

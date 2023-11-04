@@ -162,4 +162,16 @@ class NoteAPI(serializerType:Serializer) {
             return true
         } else return false
     }
+/*
+    // Function to archive an active note
+    fun archiveNote(indexToArchive: Int, note: Note?): Boolean {
+        // Check if note is active
+        val activeNote = findNote(indexToArchive)
+        if ( activeNote != null && activeNote!!.isNoteArchived == false) {
+            activeNote.isNoteArchived = note!!.isNoteArchived
+            return true
+        } else return false
+    }
+
+ */
 }
