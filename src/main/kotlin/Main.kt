@@ -48,7 +48,7 @@ fun mainMenu(): Int {
     """.trimIndent())
 }
 
-// RunMenu function -- background code for menu
+// RunMenu function -- background code for menu updated
 fun runMenu() {
     do {
         when (val option: Int = mainMenu()) {

@@ -25,6 +25,7 @@ import kotlin.test.assertNull
 *   - saveNotes()
 *   - loadNotes()
 *   - archiveNotes()
+*   - countingMethods()
 * */
 
 
@@ -365,6 +366,43 @@ class NoteAPITest {
             assertFalse(populateNotes!!.findNote(1)!!.isNoteArchived)
             assertTrue(populateNotes!!.archiveNote(1))
             assertTrue(populateNotes!!.findNote(1)!!.isNoteArchived)
+        }
+    }
+
+    // Test class to check correct counting
+    @Nested
+    inner class CountingMethods {
+
+        // Number of notes count check
+        @Test
+        fun numberOfNotesCalculatedCorrectly() {
+            assertEquals(5, populateNotes!!.numberOfNotes())
+            assertEquals(0, emptyNotes!!.numberOfNotes())
+        }
+
+        // Number of active notes count check
+        @Test
+        fun numberOfActiveNotesCalculatedCorrectly() {
+            assertEquals(3, populateNotes!!.numberOfActiveNotes())
+            assertEquals(0, emptyNotes!!.numberOfActiveNotes())
+        }
+
+        // Number of archived notes check
+        @Test
+        fun numberOfArchivedNotesCalculatedCorrectly() {
+            assertEquals(2, populateNotes!!.numberOfArchivedNotes())
+            assertEquals(0, emptyNotes!!.numberOfArchivedNotes())
+        }
+
+        // Number of notes by priority count check
+        @Test
+        fun numberOfNotesByPriorityCalculatedCorrectly() {
+            assertEquals(1, populateNotes!!.numberOfNotesByPriority(1))
+            assertEquals(0, populateNotes!!.numberOfNotesByPriority(2))
+            assertEquals(1, populateNotes!!.numberOfNotesByPriority(3))
+            assertEquals(2, populateNotes!!.numberOfNotesByPriority(4))
+            assertEquals(1, populateNotes!!.numberOfNotesByPriority(5))
+            assertEquals(0, emptyNotes!!.numberOfNotesByPriority(1))
         }
     }
 }
