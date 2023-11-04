@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 
 /* Testing class for NoteAPI functions
 *   - add()
@@ -53,6 +54,7 @@ class NoteAPITest {
         emptyNotes = null
     }
 
+    // Test function for adding notes
     @Nested
     inner class AddNotes {
 
@@ -75,6 +77,7 @@ class NoteAPITest {
         }
     }
 
+    // Test function for listing notes
     @Nested
     inner class ListNotes {
 
@@ -186,5 +189,28 @@ class NoteAPITest {
         }
 
 
+    }
+
+    // Test function for deleting notes
+    @Nested
+    inner class DeleteNotes {
+
+        // Delete notes from empty array list -> return null
+        @Test
+        fun `delete note from empty ArrayList`(){
+            assertNull(emptyNotes!!.deleteNote(0))
+            assertNull(populateNotes!!.deleteNote(-1))
+            assertNull(populateNotes!!.deleteNote(5))
+        }
+
+        // Delete note that exists
+        @Test
+        fun `delete note that exists`(){
+            assertEquals(5, populateNotes!!.numberOfNotes())
+            assertEquals(swim, populateNotes!!.deleteNote(4))
+            assertEquals(4,populateNotes!!.numberOfNotes())
+            assertEquals(testApp, populateNotes!!.deleteNote(3))
+            assertEquals(3, populateNotes!!.numberOfNotes())
+        }
     }
 }
