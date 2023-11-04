@@ -36,8 +36,8 @@ fun mainMenu(): Int {
         │  2 -> List all notes     ││  15 -> Active number     │
         │  3 -> Update a note      ││  16 -> Archived number   │
         │  4 -> Delete a note      ││  20 -> Save notes        │
-        │  5 -> Active notes       ││  21 -> Load notes        │
-        │  6 -> Archived notes     ││  **  > --------------    │
+        │  5 -> --------------     ││  21 -> Load notes        │
+        │  6 -> --------------     ││  **  > --------------    │
         │  7 -> By priority notes  ││  **  > --------------    │
         │  8 -> Number by priority ││  **  > --------------    │
         │  9 -> --                 ││  99  > Dummy data        │
@@ -56,8 +56,7 @@ fun runMenu() {
             2 -> listNotes()
             3 -> updateNote()
             4 -> deleteNote()
-            5 -> listActiveNotes()
-            6 -> listArchivedNotes()
+            10 -> archiveNote()
             15 -> numberOfActiveNotes()
             16 -> numberOfArchivedNotes()
             20 -> saveNotes()
@@ -87,6 +86,30 @@ fun addNote(){
 // Function listNotes -- listing all the notes called from noteAPI
 fun listNotes(){
     //logger.info { "List notes function activated" }
+   if (noteAPI.numberOfNotes() > 0){
+       val option = readNextInt(
+       """
+          > -----------------------
+          > 1-> View all notes
+          > 2-> View active notes
+          > 3-> View archived notes
+          > -----------------------
+          > Enter option:
+       """.trimMargin(">"))
+
+       when (option) {
+           1 -> listAllNotes()
+           2 -> listActiveNotes()
+           3 -> listArchivedNotes()
+           else -> println("Invalid option: $option")
+       }
+   } else {
+       println("Notes list empty")
+   }
+}
+
+// Function to list all notes
+fun listAllNotes(){
     println(noteAPI.listAllNotes())
 }
 
@@ -149,7 +172,6 @@ fun deleteNote(){
     }
 }
 
-/*
 // Function to archive a note
 fun archiveNote(){
     // Check if there are active notes in ArrayList
@@ -157,15 +179,14 @@ fun archiveNote(){
     if (noteAPI.numberOfActiveNotes() > 0){
         val indexToArchive = readNextInt("Enter index of the note to be archived: ")
         // Pass the index of the note to be archived
-        val noteToArchive = noteAPI.archiveNote(indexToArchive)
-        if (noteToArchive != null) {
-            println("Note archived: ")
+        if (noteAPI.archiveNote(indexToArchive)) {
+            println("Note archived")
         } else {
             println("Failed to archive note")
         }
     }
 }
- */
+
 
 // Function save -> save notes to file notes.xml
 fun saveNotes(){
