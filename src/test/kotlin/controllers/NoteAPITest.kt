@@ -24,6 +24,7 @@ import kotlin.test.assertNull
 *   - updateNote()
 *   - saveNotes()
 *   - loadNotes()
+*   - archiveNotes()
 * */
 
 
@@ -337,5 +338,33 @@ class NoteAPITest {
             assertEquals(storingNotes.findNote(2), loadedNotes.findNote(2))
         }
 
+    }
+
+    // Test class for archive notes
+    @Nested
+    inner class ArchiveNotes {
+
+        // Test for empty ArrayList
+        @Test
+        fun `archiving a non existing note`(){
+            assertFalse(populateNotes!!.archiveNote(6))
+            assertFalse(populateNotes!!.archiveNote(-1))
+            assertFalse(emptyNotes!!.archiveNote(0))
+        }
+
+        // Test for already archived note
+        @Test
+        fun `archiving already archived note`(){
+            assertTrue(populateNotes!!.findNote(4)!!.isNoteArchived)
+            assertFalse(populateNotes!!.archiveNote(4))
+        }
+
+        // Test archive active note
+        @Test
+        fun `archiving an active note`(){
+            assertFalse(populateNotes!!.findNote(1)!!.isNoteArchived)
+            assertTrue(populateNotes!!.archiveNote(1))
+            assertTrue(populateNotes!!.findNote(1)!!.isNoteArchived)
+        }
     }
 }
