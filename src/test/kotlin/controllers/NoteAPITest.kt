@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import persistence.JSONSerializer
 import persistence.XMLSerializer
 import java.io.File
 import kotlin.test.assertEquals
@@ -256,11 +257,11 @@ class NoteAPITest {
     @Nested
     inner class PersistenceTest{
 
-        // Test saving and loading empty ArrayList
+        // Test saving and loading empty ArrayList into .xml
         @Test
         fun `saving and loading empty collection to avoid crashing`(){
             // Saving an empty file
-            val storingNotes = NoteAPI(XMLSerializer(File("notes.xm")))
+            val storingNotes = NoteAPI(XMLSerializer(File("notes.xml")))
             storingNotes.store()
 
             // Loading empty file
@@ -273,7 +274,7 @@ class NoteAPITest {
             assertEquals(storingNotes.numberOfNotes(), loadedNotes.numberOfNotes())
         }
 
-        // Test saving and loading collection -> check for data persistence
+        // Test saving and loading collection -> check for data persistence .xml
         @Test
         fun `saving and loading collection in XML - no data loss`(){
             // 3 notes into notes.xml file
@@ -288,6 +289,46 @@ class NoteAPITest {
             loadedNotes.load()
 
             // Comparing stored notes to loaded notes
+            assertEquals(3, storingNotes.numberOfNotes())
+            assertEquals(3, loadedNotes.numberOfNotes())
+            assertEquals(storingNotes.numberOfNotes(), loadedNotes.numberOfNotes())
+            assertEquals(storingNotes.findNote(0), loadedNotes.findNote(0))
+            assertEquals(storingNotes.findNote(1), loadedNotes.findNote(1))
+            assertEquals(storingNotes.findNote(2), loadedNotes.findNote(2))
+        }
+
+        // Test for saving and loading empty ArrayList into .json
+        @Test
+        fun `saving and loading empty ArrayList to avoid crashing`(){
+            // Saving empty .json file
+            val storingNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            storingNotes.store()
+
+            // Loading empty .json file
+            val loadedNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            loadedNotes.load()
+
+            // Comparing empty notes stored with loaded
+            assertEquals(0, storingNotes.numberOfNotes())
+            assertEquals(0, loadedNotes.numberOfNotes())
+            assertEquals(storingNotes.numberOfNotes(), loadedNotes.numberOfNotes())
+        }
+
+        // Saving and loading populated ArrayList collection -> checking data persistence
+        @Test
+        fun `saving and loading populated ArrayList`(){
+            // Storing 3 notes in .json file
+            val storingNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            storingNotes.add(testApp!!)
+            storingNotes.add(swim!!)
+            storingNotes.add(summerHoliday!!)
+            storingNotes.store()
+
+            // Loading the notes into different collection
+            val loadedNotes = NoteAPI(JSONSerializer(File("notes.json")))
+            loadedNotes.load()
+
+            // Comparing stored with loaded collection
             assertEquals(3, storingNotes.numberOfNotes())
             assertEquals(3, loadedNotes.numberOfNotes())
             assertEquals(storingNotes.numberOfNotes(), loadedNotes.numberOfNotes())
