@@ -6,6 +6,8 @@ import persistence.XMLSerializer
 import utils.ScannerInput
 import utils.ScannerInput.ScannerInput.readNextInt
 import utils.ScannerInput.ScannerInput.readNextLine
+import utils.ValidateInput.readValidCategory
+import utils.ValidateInput.readValidPriority
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -33,7 +35,7 @@ fun mainMenu(): Int {
         ├──────────────────────────┤
         │  NOTE MENU:              │┌──────────────────────────┐
         │  1 -> Add a note         ││  10  > Archive note      │
-        │  2 -> List all notes     ││  15 -> Active number     │
+        │  2 -> List notes         ││  15 -> Active number     │
         │  3 -> Update a note      ││  16 -> Archived number   │
         │  4 -> Delete a note      ││  20 -> Save notes        │
         │  5 -> --------------     ││  21 -> Load notes        │
@@ -137,7 +139,7 @@ fun numberOfArchivedNotes(){
 fun updateNote(){
     logger.info { "Update note function activated" }
     // List notes to choose index of note to be updated
-    listNotes()
+    listAllNotes()
     if (noteAPI.numberOfNotes() > 0) {
         val indexToUpdate = readNextInt("Enter index of note to update: ")
         if (noteAPI.isValidIndex(indexToUpdate)) {
@@ -158,7 +160,7 @@ fun updateNote(){
 fun deleteNote(){
     logger.info { "Delete function activated" }
     // List notes -> check if populated -> then prompt for index number to delete
-    listNotes()
+    listAllNotes()
     if (noteAPI.numberOfNotes() > 0) {
         val indexToDelete = readNextInt("Enter note index to delete: ")
         // Pass the index number to function deleteNote delete the note by specified index

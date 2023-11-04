@@ -24,11 +24,17 @@ class NoteAPI(serializerType:Serializer) {
         return notes.add(note)
     }
 
+
+    // Function to help format the list strings not to repeat the code
+    private fun formatListString(notesToFormat : List<Note>) : String =
+        notesToFormat
+            .joinToString (separator = "\n") { note ->
+                notes.indexOf(note).toString() + ": " + note.toString() }
+
     // Function listAllNotes -- if empty else listOfNotes
     fun listAllNotes(): String =
         if (notes.isEmpty()) "No notes stored"
-        else notes.joinToString(separator = "\n") { note ->
-            notes.indexOf(note).toString() + ": " + note.toString() }
+        else formatListString(notes)
 
     // Function to count notes in ArrayList
     fun numberOfNotes(): Int {
@@ -55,9 +61,7 @@ class NoteAPI(serializerType:Serializer) {
     // Function to list active notes, return empty if no notes in array list
     fun listActiveNotes(): String =
         if (numberOfActiveNotes() == 0) "No active notes"
-        else notes.filter { note -> !note.isNoteArchived}
-            .joinToString(separator = "\n") { note ->
-                notes.indexOf(note).toString() + ": " + note.toString() }
+        else formatListString(notes.filter { note -> !note.isNoteArchived } )
 
     // Function to get number of active notes = not archived
     fun numberOfActiveNotes(): Int =
@@ -66,34 +70,21 @@ class NoteAPI(serializerType:Serializer) {
     // Function to list archived notes = not active
     fun listArchivedNotes(): String =
         if (numberOfArchivedNotes() == 0) "No archived notes"
-        else notes.filter { note -> note.isNoteArchived}
-            .joinToString(separator = "\n") { note ->
-                notes.indexOf(note).toString() + ": " + note.toString() }
+        else formatListString(notes.filter { note -> note.isNoteArchived })
 
     // Function to show number of archived notes
     fun numberOfArchivedNotes(): Int =
         notes.count() { note: Note -> note.isNoteArchived }
 
     // Function list notes by selected priority --> from 1 to 5
-    fun listNotesBySelectedPriority(priority: Int): String {
-        return if (notes.isEmpty()) {
-            "No notes stored"
-        } else {
-            var listOfNotes = ""
-            for (i in notes.indices) {
-                if (notes[i].notePriority == priority) {
-                    listOfNotes +=
-                        """$i: ${notes[i]}
-                        """.trimIndent()
-                }
-            }
-            if (listOfNotes.equals("")) {
-                "No notes with priority: $priority"
-            } else {
-                "${numberOfNotesByPriority(priority)} notes with priority $priority: $listOfNotes"
-            }
+    fun listNotesBySelectedPriority(priority: Int): String =
+        if (notes.isEmpty()) "No notes stored"
+        else {
+            val listOfNotes = formatListString(notes.filter { note -> note.notePriority == priority } )
+            if (listOfNotes.equals("")) "No notes with priority: $priority"
+            else "${numberOfNotesByPriority(priority)} notes with priority $priority: $listOfNotes "
         }
-    }
+    
 
     // Function to show number(count) of notes by selected priority --> from 1 to 5
     fun numberOfNotesByPriority(priority: Int): Int  =
