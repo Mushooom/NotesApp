@@ -16,6 +16,8 @@ import kotlin.test.assertNull
 *   - listActiveNotes()
 *   - listArchivedNotes()
 *   - listNotesBySelectedPriority()
+*   - deleteNotes()
+*   - updateNote()
 * */
 class NoteAPITest {
 
@@ -54,7 +56,7 @@ class NoteAPITest {
         emptyNotes = null
     }
 
-    // Test function for adding notes
+    // Test class for adding notes
     @Nested
     inner class AddNotes {
 
@@ -77,7 +79,7 @@ class NoteAPITest {
         }
     }
 
-    // Test function for listing notes
+    // Test class for listing notes
     @Nested
     inner class ListNotes {
 
@@ -191,7 +193,7 @@ class NoteAPITest {
 
     }
 
-    // Test function for deleting notes
+    // Test class for deleting notes
     @Nested
     inner class DeleteNotes {
 
@@ -211,6 +213,35 @@ class NoteAPITest {
             assertEquals(4,populateNotes!!.numberOfNotes())
             assertEquals(testApp, populateNotes!!.deleteNote(3))
             assertEquals(3, populateNotes!!.numberOfNotes())
+        }
+    }
+
+    // Test class update notes
+    @Nested
+    inner class UpdateNotes{
+
+        // Function to update non-existing note
+        @Test
+        fun `function to update notes from empty ArrayLIst`(){
+            assertFalse(populateNotes!!.updateNote(6, Note("New Title", 1, "School", false)))
+            assertFalse(populateNotes!!.updateNote(-1, Note("New Title", 2, "Coding", false)))
+            assertFalse(emptyNotes!!.updateNote(0, Note("Updating note", 4, "Test Category", true)))
+        }
+
+        // Function to update note that does exist
+        @Test
+        fun `function to update existing note`(){
+            // Check that note with index 2 exists and content is matching
+            //  codeApp = Note("Code App", 4, "Work", false)
+            assertEquals(codeApp, populateNotes!!.findNote(2))
+            assertEquals("Code App", populateNotes!!.findNote(2)!!.noteTitle)
+            assertEquals(4, populateNotes!!.findNote(2)!!.notePriority)
+            assertEquals("Work", populateNotes!!.findNote(2)!!.noteCategory)
+            // Update new information
+            assertTrue(populateNotes!!.updateNote(2, Note("New Title", 2, "Coding", false)))
+            assertEquals("New Title", populateNotes!!.findNote(2)!!.noteTitle)
+            assertEquals(2, populateNotes!!.findNote(2)!!.notePriority)
+            assertEquals("Coding", populateNotes!!.findNote(2)!!.noteCategory)
         }
     }
 }

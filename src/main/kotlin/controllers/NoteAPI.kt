@@ -35,11 +35,16 @@ class NoteAPI {
             notes[index]
         } else null
     }
-        // Function to check if there are items in ArrayList
-        fun isValidListIndex(index: Int, list: List<Any>): Boolean {
-            return (index >= 0 && index < list.size)
-        }
 
+    // Function to check if there are items in ArrayList
+    fun isValidListIndex(index: Int, list: List<Any>): Boolean {
+        return (index >= 0 && index < list.size)
+    }
+
+    // Function is valid index
+    fun isValidIndex(index: Int): Boolean {
+        return isValidListIndex(index, notes)
+    }
 
     // Function to list active notes, return empty if no notes in array list
     fun listActiveNotes(): String {
@@ -132,4 +137,15 @@ class NoteAPI {
         } else null
     }
 
+    // Function to update note by selected index
+    fun updateNote(indexToUpdate: Int, note: Note?): Boolean {
+        // Allocate the index of the note -> check if it exists
+        val allocatedNote = findNote(indexToUpdate)
+        if ((allocatedNote != null) && (note != null)) {
+            allocatedNote.noteTitle = note.noteTitle
+            allocatedNote.notePriority = note.notePriority
+            allocatedNote.noteCategory = note.noteCategory
+            return true
+        } else return false
+    }
 }
