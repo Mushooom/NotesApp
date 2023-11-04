@@ -572,9 +572,9 @@ jQuery.cookie = function(name, value, options) {
     <body>
         <div id="container">
             <div id="header">
-                <div class="time" xmlns="">44 ms</div>
+                <div class="time" xmlns="">95 ms</div>
                 <h1>
-                    NoteAPITest: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">2 total, </span><span class="passed">2 passed</span></strong>
+                    NoteAPITest: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">13 total, </span><span class="passed">13 passed</span></strong>
                 </h1>
                 <div id="treecontrol">
                     <ul>
@@ -593,28 +593,104 @@ jQuery.cookie = function(name, value, options) {
                 <ul id="tree">
                     <li xmlns="" class="level top open">
                         <span><em class="time">
-                                <div class="time">44 ms</div>
+                                <div class="time">95 ms</div>
                             </em>Gradle Test Run :test</span>
                         <ul>
                             <li class="level suite open">
                                 <span><em class="time">
-                                        <div class="time">44 ms</div>
-                                    </em>Gradle Test Executor 6</span>
+                                        <div class="time">95 ms</div>
+                                    </em>Gradle Test Executor 4</span>
                                 <ul>
                                     <li class="level suite open">
                                         <span><em class="time">
-                                                <div class="time">44 ms</div>
+                                                <div class="time">95 ms</div>
                                             </em>NoteAPITest</span>
                                         <ul>
-                                            <li class="level test">
+                                            <li class="level suite open">
                                                 <span><em class="time">
-                                                        <div class="time">23 ms</div>
-                                                    </em><em class="status">passed</em>adding a Note to empty ArrayList</span>
+                                                        <div class="time">37 ms</div>
+                                                    </em>AddNotes</span>
+                                                <ul>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">36 ms</div>
+                                                            </em><em class="status">passed</em>adding a Note to empty ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>adding a Note fo populated ArrayList</span>
+                                                    </li>
+                                                </ul>
                                             </li>
-                                            <li class="level test">
+                                            <li class="level suite open">
                                                 <span><em class="time">
-                                                        <div class="time">21 ms</div>
-                                                    </em><em class="status">passed</em>adding a Note fo populated ArrayList</span>
+                                                        <div class="time">3 ms</div>
+                                                    </em>DeleteNotes</span>
+                                                <ul>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>delete note that exists</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">2 ms</div>
+                                                            </em><em class="status">passed</em>delete note from empty ArrayList</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="level suite open">
+                                                <span><em class="time">
+                                                        <div class="time">55 ms</div>
+                                                    </em>ListNotes</span>
+                                                <ul>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">14 ms</div>
+                                                            </em><em class="status">passed</em>listArchivedNotes from populated ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">2 ms</div>
+                                                            </em><em class="status">passed</em>listActiveNotes for empty ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>listNotesBySelectedPriority from empty ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>listActiveNotes from populated ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>list all notes from populated ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>listArchivedNotes from empty ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>list all notes for empty ArrayList</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">2 ms</div>
+                                                            </em><em class="status">passed</em>listNotesBySelectedPriority from populated ArrayList with no notes of priority</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">32 ms</div>
+                                                            </em><em class="status">passed</em>listNotesBySelectedPriority shows notes with matching priority</span>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
@@ -626,7 +702,7 @@ jQuery.cookie = function(name, value, options) {
             </div>
         </div>
         <div id="footer">
-            <p>Generated by IntelliJ IDEA on 13/10/2023, 11:22</p>
+            <p>Generated by IntelliJ IDEA on 04/11/2023, 14:09</p>
         </div>
     </body>
 </html>

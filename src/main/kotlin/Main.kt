@@ -20,7 +20,6 @@ fun main(args: Array<String>) {
     runMenu()
 }
 
-
 // Main menu function -- (alt + 179, 180, 196 ...) -- return Int value entered
 // Web source for alt codes https://www.alt-codes.net/
 fun mainMenu(): Int {
@@ -49,7 +48,6 @@ fun mainMenu(): Int {
     """.trimIndent())
 }
 
-
 // RunMenu function -- background code for menu
 fun runMenu() {
     do {
@@ -69,7 +67,6 @@ fun runMenu() {
     } while (true)
 }
 
-
 // Function addNote -- adding a note -> noteAPI array list -> models Note
 fun addNote(){
     //logger.info { "addNote function invoked" }
@@ -84,7 +81,6 @@ fun addNote(){
         println("Add Failed")
     }
 }
-
 
 // Function listNotes -- listing all the notes called from noteAPI
 fun listNotes(){
@@ -107,7 +103,7 @@ fun numberOfActiveNotes(){
     println("Active notes: " + noteAPI.numberOfActiveNotes())
 }
 
-// Function to show count of active notes
+// Function to show count of archived notes
 fun numberOfArchivedNotes(){
     println("Archived notes: " + noteAPI.numberOfArchivedNotes())
 }
@@ -115,8 +111,23 @@ fun numberOfArchivedNotes(){
 // Function updateNote -- updating a note by selected ID
 fun updateNote(){
     logger.info { "Update note function activated" }
+    // List notes to choose index of note to be updated
+    listNotes()
+    if (noteAPI.numberOfNotes() > 0) {
+        val indexToUpdate = readNextInt("Enter index of note to update: ")
+        if (noteAPI.isValidIndex(indexToUpdate)) {
+            val noteTitle = readNextLine("Enter title: ")
+            val notePriority = readNextInt(" Priority from 1 to 5: ")
+            val noteCategory = readNextLine("Enter category: ")
+            // pass the index and new data to NoteAPI
+            if (noteAPI.updateNote(indexToUpdate, Note(noteTitle, notePriority, noteCategory, false))){
+                println("Successful update")
+            }
+            else println("Update failed")
+        }
+        else println("No notes with such index number")
+    }
 }
-
 
 // Function deleteNote -- note delete by entering ID
 fun deleteNote(){
@@ -135,11 +146,6 @@ fun deleteNote(){
 
     }
 }
-
-
-// Function listNotesByPriority -> noteAPI listNotesBySelectedPriority
-
-
 
 // Function exit -- application exit on selecting 0 from menu
 fun exitApp(){
