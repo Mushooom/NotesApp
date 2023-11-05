@@ -2,12 +2,10 @@ import controllers.NoteAPI
 import models.Note
 import mu.KotlinLogging
 import persistence.JSONSerializer
-import persistence.XMLSerializer
-import utils.ScannerInput
+//import persistence.XMLSerializer
+//import utils.ScannerInput
 import utils.ScannerInput.ScannerInput.readNextInt
 import utils.ScannerInput.ScannerInput.readNextLine
-import utils.ValidateInput.readValidCategory
-import utils.ValidateInput.readValidPriority
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -29,7 +27,7 @@ fun main(args: Array<String>) {
 // Main menu function -- (alt + 179, 180, 196 ...) -- return Int value entered
 // Web source for alt codes https://www.alt-codes.net/
 fun mainMenu(): Int {
-    return ScannerInput.ScannerInput.readNextInt("""
+    return readNextInt("""
         ┌──────────────────────────┐
         │     NOTE KEEPER APP      │
         ├──────────────────────────┤
@@ -38,7 +36,7 @@ fun mainMenu(): Int {
         │  2 -> List notes         ││  15 -> Active number     │
         │  3 -> Update a note      ││  16 -> Archived number   │
         │  4 -> Delete a note      ││  20 -> Save notes        │
-        │  5 -> --------------     ││  21 -> Load notes        │
+        │  5 -> Notes by priority  ││  21 -> Load notes        │
         │  6 -> --------------     ││  **  > --------------    │
         │  7 -> By priority notes  ││  **  > --------------    │
         │  8 -> Number by priority ││  **  > --------------    │
@@ -58,6 +56,7 @@ fun runMenu() {
             2 -> listNotes()
             3 -> updateNote()
             4 -> deleteNote()
+            5 -> listNotesByPriority()
             10 -> archiveNote()
             15 -> numberOfActiveNotes()
             16 -> numberOfArchivedNotes()
@@ -76,7 +75,7 @@ fun addNote(){
     val noteTitle = readNextLine("Enter a tile of the note: ")
     val notePriority = readNextInt("Enter a priority from 1 to 5: ")
     val noteCategory = readNextLine("Enter a category for the note: ")
-    val isAdded = noteAPI.add(models.Note(noteTitle, notePriority, noteCategory, false))
+    val isAdded = noteAPI.add(Note(noteTitle, notePriority, noteCategory, false))
 
     if (isAdded) {
         println("Added Successfully")
@@ -95,6 +94,7 @@ fun listNotes(){
           > 1-> View all notes
           > 2-> View active notes
           > 3-> View archived notes
+          > 4-> View by priority
           > -----------------------
           > Enter option:
        """.trimMargin(">"))
@@ -103,11 +103,28 @@ fun listNotes(){
            1 -> listAllNotes()
            2 -> listActiveNotes()
            3 -> listArchivedNotes()
+           4 -> listNotesByPriority()
            else -> println("Invalid option: $option")
        }
    } else {
        println("Notes list empty")
    }
+}
+
+fun listNotesByPriority(){
+    if (noteAPI.numberOfNotes() >0) {
+        val selectedPriority = readNextInt("Enter priority from 1 to 5: ")
+        when (selectedPriority) {
+            1 -> println(noteAPI.listNotesBySelectedPriority(1))
+            2 -> println(noteAPI.listNotesBySelectedPriority(2))
+            3 -> println(noteAPI.listNotesBySelectedPriority(3))
+            4 -> println(noteAPI.listNotesBySelectedPriority(4))
+            5 -> println(noteAPI.listNotesBySelectedPriority(5))
+            else -> println("Invalid option selected")
+        }
+    } else {
+        println("No notes on the list")
+    }
 }
 
 // Function to list all notes

@@ -65,7 +65,7 @@ class NoteAPI(serializerType:Serializer) {
 
     // Function to get number of active notes = not archived
     fun numberOfActiveNotes(): Int =
-        notes.count() { note: Note -> !note.isNoteArchived }
+        notes.count { note: Note -> !note.isNoteArchived }
 
     // Function to list archived notes = not active
     fun listArchivedNotes(): String =
@@ -74,21 +74,21 @@ class NoteAPI(serializerType:Serializer) {
 
     // Function to show number of archived notes
     fun numberOfArchivedNotes(): Int =
-        notes.count() { note: Note -> note.isNoteArchived }
+        notes.count { note: Note -> note.isNoteArchived }
 
     // Function list notes by selected priority --> from 1 to 5
     fun listNotesBySelectedPriority(priority: Int): String =
         if (notes.isEmpty()) "No notes stored"
         else {
             val listOfNotes = formatListString(notes.filter { note -> note.notePriority == priority } )
-            if (listOfNotes.equals("")) "No notes with priority: $priority"
-            else "${numberOfNotesByPriority(priority)} notes with priority $priority: $listOfNotes "
+            if (listOfNotes == "") "No notes with priority: $priority"
+            else "${numberOfNotesByPriority(priority)} notes with priority $priority: $listOfNotes"
         }
     
 
     // Function to show number(count) of notes by selected priority --> from 1 to 5
     fun numberOfNotesByPriority(priority: Int): Int  =
-        notes.count() { note: Note -> note.notePriority == priority }
+        notes.count { note: Note -> note.notePriority == priority }
 
 
     // Function delete note by selected index
@@ -102,12 +102,12 @@ class NoteAPI(serializerType:Serializer) {
     fun updateNote(indexToUpdate: Int, note: Note?): Boolean {
         // Allocate the index of the note -> check if it exists
         val allocatedNote = findNote(indexToUpdate)
-        if ((allocatedNote != null) && (note != null)) {
+        return if ((allocatedNote != null) && (note != null)) {
             allocatedNote.noteTitle = note.noteTitle
             allocatedNote.notePriority = note.notePriority
             allocatedNote.noteCategory = note.noteCategory
-            return true
-        } else return false
+            true
+        } else false
     }
 
     // Function to archive an active note
