@@ -36,8 +36,8 @@ class NoteAPITest {
     private var codeApp: Note? = null
     private var testApp: Note? = null
     private var swim: Note? = null
-    private var populateNotes: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
-    private var emptyNotes: NoteAPI? = NoteAPI(XMLSerializer(File("notes.xml")))
+    private var populateNotes: NoteAPI? = NoteAPI(JSONSerializer(File("notes.json")))
+    private var emptyNotes: NoteAPI? = NoteAPI(JSONSerializer(File("notes.json")))
 
     @BeforeEach  // Dummy Data -- set values and load into App ArrayList
     fun setup() {

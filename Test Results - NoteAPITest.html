@@ -572,9 +572,9 @@ jQuery.cookie = function(name, value, options) {
     <body>
         <div id="container">
             <div id="header">
-                <div class="time" xmlns="">95 ms</div>
+                <div class="time" xmlns="">404 ms</div>
                 <h1>
-                    NoteAPITest: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">13 total, </span><span class="passed">13 passed</span></strong>
+                    NoteAPITest: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">26 total, </span><span class="passed">26 passed</span></strong>
                 </h1>
                 <div id="treecontrol">
                     <ul>
@@ -593,66 +593,115 @@ jQuery.cookie = function(name, value, options) {
                 <ul id="tree">
                     <li xmlns="" class="level top open">
                         <span><em class="time">
-                                <div class="time">95 ms</div>
+                                <div class="time">404 ms</div>
                             </em>Gradle Test Run :test</span>
                         <ul>
                             <li class="level suite open">
                                 <span><em class="time">
-                                        <div class="time">95 ms</div>
-                                    </em>Gradle Test Executor 4</span>
+                                        <div class="time">404 ms</div>
+                                    </em>Gradle Test Executor 30</span>
                                 <ul>
                                     <li class="level suite open">
                                         <span><em class="time">
-                                                <div class="time">95 ms</div>
+                                                <div class="time">404 ms</div>
                                             </em>NoteAPITest</span>
                                         <ul>
                                             <li class="level suite open">
                                                 <span><em class="time">
-                                                        <div class="time">37 ms</div>
+                                                        <div class="time">41 ms</div>
                                                     </em>AddNotes</span>
                                                 <ul>
                                                     <li class="level test">
                                                         <span><em class="time">
-                                                                <div class="time">36 ms</div>
+                                                                <div class="time">39 ms</div>
                                                             </em><em class="status">passed</em>adding a Note to empty ArrayList</span>
                                                     </li>
                                                     <li class="level test">
                                                         <span><em class="time">
-                                                                <div class="time">1 ms</div>
+                                                                <div class="time">2 ms</div>
                                                             </em><em class="status">passed</em>adding a Note fo populated ArrayList</span>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li class="level suite open">
                                                 <span><em class="time">
-                                                        <div class="time">3 ms</div>
-                                                    </em>DeleteNotes</span>
+                                                        <div class="time">6 ms</div>
+                                                    </em>ArchiveNotes</span>
+                                                <ul>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">4 ms</div>
+                                                            </em><em class="status">passed</em>archiving an active note</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>archiving a non existing note</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>archiving already archived note</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="level suite open">
+                                                <span><em class="time">
+                                                        <div class="time">7 ms</div>
+                                                    </em>CountingMethods</span>
                                                 <ul>
                                                     <li class="level test">
                                                         <span><em class="time">
                                                                 <div class="time">1 ms</div>
-                                                            </em><em class="status">passed</em>delete note that exists</span>
+                                                            </em><em class="status">passed</em>numberOfNotesCalculatedCorrectly</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>numberOfActiveNotesCalculatedCorrectly</span>
                                                     </li>
                                                     <li class="level test">
                                                         <span><em class="time">
                                                                 <div class="time">2 ms</div>
+                                                            </em><em class="status">passed</em>numberOfNotesByPriorityCalculatedCorrectly</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">3 ms</div>
+                                                            </em><em class="status">passed</em>numberOfArchivedNotesCalculatedCorrectly</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="level suite open">
+                                                <span><em class="time">
+                                                        <div class="time">5 ms</div>
+                                                    </em>DeleteNotes</span>
+                                                <ul>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">2 ms</div>
+                                                            </em><em class="status">passed</em>delete note that exists</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">3 ms</div>
                                                             </em><em class="status">passed</em>delete note from empty ArrayList</span>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li class="level suite open">
                                                 <span><em class="time">
-                                                        <div class="time">55 ms</div>
+                                                        <div class="time">29 ms</div>
                                                     </em>ListNotes</span>
                                                 <ul>
                                                     <li class="level test">
                                                         <span><em class="time">
-                                                                <div class="time">14 ms</div>
+                                                                <div class="time">17 ms</div>
                                                             </em><em class="status">passed</em>listArchivedNotes from populated ArrayList</span>
                                                     </li>
                                                     <li class="level test">
                                                         <span><em class="time">
-                                                                <div class="time">2 ms</div>
+                                                                <div class="time">1 ms</div>
                                                             </em><em class="status">passed</em>listActiveNotes for empty ArrayList</span>
                                                     </li>
                                                     <li class="level test">
@@ -667,7 +716,7 @@ jQuery.cookie = function(name, value, options) {
                                                     </li>
                                                     <li class="level test">
                                                         <span><em class="time">
-                                                                <div class="time">1 ms</div>
+                                                                <div class="time">3 ms</div>
                                                             </em><em class="status">passed</em>list all notes from populated ArrayList</span>
                                                     </li>
                                                     <li class="level test">
@@ -687,8 +736,72 @@ jQuery.cookie = function(name, value, options) {
                                                     </li>
                                                     <li class="level test">
                                                         <span><em class="time">
-                                                                <div class="time">32 ms</div>
+                                                                <div class="time">2 ms</div>
                                                             </em><em class="status">passed</em>listNotesBySelectedPriority shows notes with matching priority</span>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="level suite open">
+                                                <span><em class="time">
+                                                        <div class="time">314 ms</div>
+                                                    </em>PersistenceTest</span>
+                                                <ul>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">245 ms</div>
+                                                            </em><em class="status">passed</em>saving and loading populated ArrayList</span>
+                                                        <ul>
+                                                            <li class="text">
+                                                                <span class="stdout">Saving notes<br/></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">9 ms</div>
+                                                            </em><em class="status">passed</em>saving and loading empty ArrayList to avoid crashing</span>
+                                                        <ul>
+                                                            <li class="text">
+                                                                <span class="stdout">Saving notes<br/></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">45 ms</div>
+                                                            </em><em class="status">passed</em>saving and loading empty collection to avoid crashing</span>
+                                                        <ul>
+                                                            <li class="text">
+                                                                <span class="stdout">Saving notes<br/></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">15 ms</div>
+                                                            </em><em class="status">passed</em>saving and loading collection in XML - no data loss</span>
+                                                        <ul>
+                                                            <li class="text">
+                                                                <span class="stdout">Saving notes<br/></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="level suite open">
+                                                <span><em class="time">
+                                                        <div class="time">2 ms</div>
+                                                    </em>UpdateNotes</span>
+                                                <ul>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>function to update notes from empty ArrayLIst</span>
+                                                    </li>
+                                                    <li class="level test">
+                                                        <span><em class="time">
+                                                                <div class="time">1 ms</div>
+                                                            </em><em class="status">passed</em>function to update existing note</span>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -702,7 +815,7 @@ jQuery.cookie = function(name, value, options) {
             </div>
         </div>
         <div id="footer">
-            <p>Generated by IntelliJ IDEA on 04/11/2023, 14:09</p>
+            <p>Generated by IntelliJ IDEA on 05/11/2023, 00:09</p>
         </div>
     </body>
 </html>

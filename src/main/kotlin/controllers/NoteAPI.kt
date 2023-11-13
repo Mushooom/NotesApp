@@ -5,12 +5,12 @@ import persistence.Serializer
 
 // Controller class NoteAPI
 class NoteAPI(serializerType:Serializer) {
-    var notes = ArrayList<Note>()
+    private var notes = ArrayList<Note>()
     private var serializer: Serializer = serializerType
 
     @Throws(Exception::class)
     fun load(){
-        notes = serializer.read() as ArrayList<Note>
+        notes = (serializer.read() as ArrayList<Note>)
     }
 
     @Throws(Exception::class)
@@ -49,7 +49,7 @@ class NoteAPI(serializerType:Serializer) {
     }
 
     // Function to check if there are items in ArrayList
-    fun isValidListIndex(index: Int, list: List<Any>): Boolean {
+    private fun isValidListIndex(index: Int, list: List<Any>): Boolean {
         return (index >= 0 && index < list.size)
     }
 

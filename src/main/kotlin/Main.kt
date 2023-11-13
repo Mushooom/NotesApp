@@ -15,11 +15,13 @@ import kotlin.system.exitProcess
 var logger = KotlinLogging.logger{}
 
 // NoteAPI variable
-  // private val noteAPI = NoteAPI(XMLSerializer(File("notes.xml")))
+  // private val noteAPI = NoteAPI(JSONSerializer(File("notes.json"))) -> using JSON
 private val noteAPI = NoteAPI(JSONSerializer(File("notes.json")))
 
 // Main function
-fun main(args: Array<String>) {
+
+// Old code fun main(args: Array<String>) {
+fun main() {
     logger.info { "NOTE APP starting" }
     runMenu()
 }
@@ -30,17 +32,15 @@ fun mainMenu(): Int {
     return readNextInt("""
         ┌──────────────────────────┐
         │     NOTE KEEPER APP      │
-        ├──────────────────────────┤
-        │  NOTE MENU:              │┌──────────────────────────┐
+        ├──────────────────────────┤┌──────────────────────────┐
+        │  NOTE MENU:              ││                          │ 
         │  1 -> Add a note         ││  10  > Archive note      │
         │  2 -> List notes         ││  15 -> Active number     │
         │  3 -> Update a note      ││  16 -> Archived number   │
         │  4 -> Delete a note      ││  20 -> Save notes        │
         │  5 -> Notes by priority  ││  21 -> Load notes        │
-        │  6 -> --------------     ││  **  > --------------    │
-        │  7 -> By priority notes  ││  **  > --------------    │
-        │  8 -> Number by priority ││  **  > --------------    │
-        │  9 -> --                 ││  99  > Dummy data        │
+        │  6 -> Number by priority ││  **  > --------------    │
+        │                          ││  99  > Dummy data        │
         ├──────────────────────────┤└──────────────────────────┘
         │  0 -> Exit app           │
         └──────────────────────────┘
@@ -207,7 +207,7 @@ fun archiveNote(){
 }
 
 
-// Function save -> save notes to file notes.xml
+// Function save -> save notes to file notes.json
 fun saveNotes(){
     try {
         noteAPI.store()
